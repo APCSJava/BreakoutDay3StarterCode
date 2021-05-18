@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
@@ -14,7 +15,12 @@ public class Ball extends Ellipse2D.Double {
     public Ball() {
         super(START_X, START_Y, Paddle.HEIGHT, Paddle.HEIGHT);
         color = Color.WHITE;
-        speed = new double[]{Math.random() < 0.5 ? -1.5 : 1.5, 1.5};
+        String speedString = JOptionPane.showInputDialog("What speed?");
+        double speed = 1.5; // default
+        if (speedString!= null && speedString.length()>0) {
+            speed = java.lang.Double.parseDouble(speedString);
+        }
+        this.speed = new double[]{Math.random() < 0.5 ? -speed : speed, speed};
     }
 
     public void drawBall(Graphics2D g2) {
@@ -50,7 +56,7 @@ public class Ball extends Ellipse2D.Double {
     }
 
     /**
-     * Where will the ball be when updated?  If would cause a collision, avoid!
+     * Where will the ball be when updated?  If new position would cause a collision, bounce!
      *
      * @return a rectangle located where this would be on next update
      */
