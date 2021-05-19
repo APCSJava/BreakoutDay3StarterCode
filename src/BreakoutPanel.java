@@ -71,6 +71,7 @@ public class BreakoutPanel extends JPanel {
             b.drawBrick(g2d);
         }
         paddle.drawPaddle(g2d);
+        ball.drawBall(g2d);
     }
 
     public void drawBackground(Graphics2D g2d) {
